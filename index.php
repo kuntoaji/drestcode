@@ -1,36 +1,50 @@
 <?php
-
 /**
-* App must have at least one controller & one model. You can have multiple view
-* Controller must create instance model & view. 
-* Give the name of model when creating instance. Model must return the status code.
-* Give the status code when creating view instance. View must return the message.
-* Controller Method (action) must return the message from view as ordered map array.
-* Array must contain three key: code, data, format
-* Model must have all action handler
-* 
-* example class name for your controller, model, & view: 
-* ResourceController (mandatory)
-* ResourceModel (optional)
-* ResourceAction (optional)
-* 
-*
-* Supported URI design:
-* /resource/action
-* /resource/action/id
-* /resource/action?param=data1&param2=data2....
-*/
-	/** DO NOT EDIT THIS PART */
-	/** start */
+    Drestcode Index File. Purpose: Load all php file which is needed and execute application.
+    Copyright (C) 2009  Kunto Aji Kristianto
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+	/**
+	 * Load all path
+	 *
+	 */
 	$paths = array('./drestcode', './app/controllers', './app/models', './app/views', './app/config');
 	foreach($paths as $path) {
 		set_include_path(get_include_path() . PATH_SEPARATOR . $path);
 	}	
 
+	/**
+	 * Calling php file
+	 *
+	 * @param string
+	 *
+	 */ 
 	function __autoload($class_name) {
 		require_once $class_name.'.php';
 	}
-	DrestcodeRunner::execute();	
+
+	/**
+	 * Execute application
+	 *
+	 */
+	DrestcodeRunner::execute();
+
+	/**
+	 * Restoring path to default
+	 *
+	 */	
 	restore_include_path();
-	/** end */
 ?>
