@@ -1,14 +1,52 @@
 <?php
+/**
+    RestResponse class. Class to handle response.
+    Copyright (C) 2009  Kunto Aji Kristianto
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
 class RestResponse {
+	/**
+	 * Format data
+	 *
+	 * @var string
+	 * @access private
+	 */
 	private $data_format;
+
+	/**
+	 * HTTP status code that will be used as response
+	 *
+	 * @var string
+	 * @access private
+	 */
 	private $response_code;
+
+	/**
+	 * Hash List of HTTP status code and HTTP status message
+	 *
+	 * @var hash
+	 * @access private
+	 */
 	private $response_code_message;
-	//private $header_message;
-	//private $header_content_type;
-	
+
+	/**
+	 * Constructor. Define HTTP status code and HTTP status message
+	 *
+	 */
 	public function __construct() {
-	//	$this->representation = null;
-		//$this->response_code = null;
 		$this->response_code_message = Array(
 				'100' => 'Continue', 
        				'101' => 'Switching Protocols',
@@ -64,16 +102,30 @@ class RestResponse {
   				'509' => 'Bandwidth Limit Exceeded',
   				'510' => 'Not Extended'
 		      );	
-	}
-	
+	}	
+
+	/**
+	 * Set HTTP status code
+	 *
+	 * @return string
+	 */
 	public function setResponseCode($response_code = '404') {
 		$this->response_code = $response_code;
 	}
 
+	/**
+	 * Set Content Type (MIME)
+	 *
+	 * @return string
+	 */
 	public function setContentType($format = 'application/xml') {
 		$this->data_format = $format;
 	}
 
+	/**
+	 * Send HTTP response header
+	 *
+	 */
 	public function sendHeader() {
 		
 		$header_message = $_SERVER['SERVER_PROTOCOL'].' '.$this->response_code.' '.$this->response_code_message[$this->response_code];

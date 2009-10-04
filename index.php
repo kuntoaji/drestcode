@@ -1,6 +1,6 @@
 <?php
 /**
-    Drestcode Index File. Purpose: Load all php file which is needed and execute application.
+    Drestcode Index File. Purpose: Load all php file which is needed and run DrestcodeRunner.
     Copyright (C) 2009  Kunto Aji Kristianto
 
     This program is free software: you can redistribute it and/or modify
@@ -37,7 +37,7 @@
 	}
 
 	/**
-	 * Execute application
+	 * Run DrestcodeRunner
 	 *
 	 */
 	DrestcodeRunner::execute();
