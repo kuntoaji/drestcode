@@ -1,7 +1,6 @@
 <?php
 /**
-    RestView class. This is an application-wide view file.
-    You can put all your view methods here.
+    View class. Class to get what view will be used.
     Copyright (C) 2009  Kunto Aji Kristianto
 
     This program is free software: you can redistribute it and/or modify
@@ -19,7 +18,31 @@
  */
 
 
-class RestView extends View {
-	
+class RestView {
+	/**
+	 * Name of view that will be used.
+	 *
+	 * @var string
+	 * @access private
+	 */
+	private $action_view;
+
+	/**
+	 * Set the name of view
+	 *
+	 * @param string
+	 */
+	public function setActionView($action) {
+		$this->action_view = $action;
+	}
+
+	/**
+	 * Get the name of view
+	 *
+	 * @return string
+	 */
+	public function getActionView() {
+		return $this->action_view;
+	}
 }
 ?>
