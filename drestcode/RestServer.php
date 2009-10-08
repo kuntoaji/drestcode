@@ -135,8 +135,8 @@ abstract class RestServer {
 	public function reply($data) {
 		$this->response->sendHeader();
 		echo $data;
-		$filename = 'app/log/performance.log';
 		if(function_exists("xdebug_time_index")) {
+			$filename = 'app/log/performance.log';
 			$time = $this->getRequestURI()." took ".round(xdebug_time_index(),5)." seconds\n";
 			$time .= "Used ".round(xdebug_memory_usage()/1024,5)."Kb of Memory\n";
 			$time .= "Used at peak ".round(xdebug_peak_memory_usage()/1024,5)."Kb of Memory\n";
