@@ -39,8 +39,10 @@ abstract class DataAccess extends Database {
 	 *
 	 */
 	public function __construct() {
-		$this->con = mysqli_connect($this->database_host, $this->database_user, $this->database_password, $this->database_name);
+		$this->con = mysql_connect($this->database_host, $this->database_user, $this->database_password);
 		if(!$this->con){
+			die ("Error: ". mysql_error());
+		} elseif (!mysql_select_db($this->database_name, $this->con)) {
 			die ("Error: ". mysql_error());
 		}
 	}
@@ -50,7 +52,7 @@ abstract class DataAccess extends Database {
 	 *
 	 */
 	public function __destruct() {
-		mysqli_close($this->con);
+		mysql_close($this->con);
 	}
 
 	protected function regexQuery($param) {
@@ -143,15 +145,15 @@ abstract class DataAccess extends Database {
 	 */
 	protected function sendQuery($sql) {
 		$rows = null;
-		$result = mysqli_query($this->con, $sql);
+		$result = mysql_query($sql, $this->con);
 		if ($result) {
 			$i = 0;
-			while ($row = mysqli_fetch_array($result)) {
+			while ($row = mysql_fetch_array($result)) {
 				$rows[$i] = $row;
 				$i++;
 			}
 		} else {
-			die(mysqli_error($this->con));
+			die(mysql_error($this->con));
 		}
 		return $rows;
 	}

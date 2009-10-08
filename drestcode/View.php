@@ -18,7 +18,7 @@
  */
 
 
-class RestView {
+class View {
 	/**
 	 * Name of view that will be used.
 	 *

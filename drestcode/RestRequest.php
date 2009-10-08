@@ -42,7 +42,10 @@ class RestRequest {
 	 * @return array
 	 */
 	public function getDataPOST() {
-		return $_POST;
+		foreach ($_POST as $key => $value) {
+			$result[$key] = mysql_real_escape_string($value);
+		}
+		return $result;
 	}
 	
 	/**
@@ -51,7 +54,10 @@ class RestRequest {
 	 * @return array
 	 */
 	public function getDataGET() {
-		return $_GET;
+		foreach ($_GET as $key => $value) {
+			$result[$key] = mysql_real_escape_string($value);
+		}
+		return $result;
 	}
 	
 	/**
@@ -60,7 +66,10 @@ class RestRequest {
 	 * @return array
 	 */
 	public function getDataPUT() {
-		return $_PUT;
+		foreach ($_PUT as $key => $value) {
+			$result[$key] = mysql_real_escape_string($value);
+		}
+		return $result;
 	}
 	
 	/**
@@ -69,7 +78,10 @@ class RestRequest {
 	 * @return array
 	 */
 	public function getDataDELETE() {
-		return $_DELETE;
+		foreach ($_DELETE as $key => $value) {
+			$result[$key] = mysql_real_escape_string($value);
+		}
+		return $result;
 	}
 }
 ?>
