@@ -114,6 +114,10 @@ abstract class RestServer {
 				$method_data = $this->request->getDataDELETE();
 				break;
 		}
+
+		foreach ($method_data as $key => $value) {
+			$result[$key] = mysql_real_escape_string($value);
+		}
 		return $method_data;
 	}
 

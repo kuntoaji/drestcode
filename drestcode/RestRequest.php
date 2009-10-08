@@ -42,10 +42,7 @@ class RestRequest {
 	 * @return array
 	 */
 	public function getDataPOST() {
-		foreach ($_POST as $key => $value) {
-			$result[$key] = mysql_real_escape_string($value);
-		}
-		return $result;
+		return $_POST;
 	}
 	
 	/**
@@ -54,10 +51,7 @@ class RestRequest {
 	 * @return array
 	 */
 	public function getDataGET() {
-		foreach ($_GET as $key => $value) {
-			$result[$key] = mysql_real_escape_string($value);
-		}
-		return $result;
+		return $_GET;
 	}
 	
 	/**
@@ -66,10 +60,8 @@ class RestRequest {
 	 * @return array
 	 */
 	public function getDataPUT() {
-		foreach ($_PUT as $key => $value) {
-			$result[$key] = mysql_real_escape_string($value);
-		}
-		return $result;
+		parse_str(file_get_contents('php://input'), $_PUT);
+		return $_PUT;
 	}
 	
 	/**
