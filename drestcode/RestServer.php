@@ -115,10 +115,11 @@ abstract class RestServer {
 				break;
 		}
 
-		foreach ($method_data as $key => $value) {
+		foreach($method_data as $key => $value) {
 			$result[$key] = mysql_real_escape_string($value);
 		}
-		return $method_data;
+
+		return $result;
 	}
 
 	/**

@@ -70,10 +70,8 @@ class RestRequest {
 	 * @return array
 	 */
 	public function getDataDELETE() {
-		foreach ($_DELETE as $key => $value) {
-			$result[$key] = mysql_real_escape_string($value);
-		}
-		return $result;
+		parse_str(file_get_contents('php://input'), $_DELETE);
+		return $_DELETE;
 	}
 }
 ?>
